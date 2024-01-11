@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+  position: relative;
+  width: 300px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image covers the entire card */
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align title and logo to the bottom */
+  align-items: center; /* Center title and logo horizontally */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover .card-overlay {
+  opacity: 1; /* Show overlay on hover */
+}
+
+.card-title {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.download-logo {
+  display: inline-block;
+}
+
+.download-logo img {
+  width: 30px; /* Adjust logo size as needed */
+}
+/* Styles for the card as before */
+
+.temporary-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 241, 241, 0.8); /* Semi-transparent black background */
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.temporary-box img {
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="New folder/cover.jpg" alt="Card image">
+        <div class="card-overlay">
+          <h2 class="card-title">Card Title</h2>
+          <a href="#" class="download-logo">
+            <img src="download.svg" alt="Download">
+          </a>
+        </div>
+      </div>
+      <!-- temporary-box statrs -->
+      <div class="card">
+        <img src="New folder/cover.jpg" alt="Card image">
+        <div class="card-overlay">
+          </div>
+      </div>
+      
+      <div class="temporary-box" style="display: none;">
+        <img src="New folder/cover.jpg" alt="Card image">
+        <button class="close-button">Close</button>
+      </div>
+      
+    <script>
+        const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('mouseover', () => {
+    card.querySelector('.card-overlay').style.opacity = 1;
+  });
+
+  card.addEventListener('mouseout', () => {
+    card.querySelector('.card-overlay').style.opacity = 0;
+  });
+});
+// const cards = document.querySelectorAll('.card');
+const temporaryBox = document.querySelector('.temporary-box');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    temporaryBox.style.display = 'block';
+  });
+});
+
+temporaryBox.querySelector('.close-button').addEventListener('click', () => {
+  temporaryBox.style.display = 'none';
+});
+
+
+    </script>  
+</body>
+</html>
